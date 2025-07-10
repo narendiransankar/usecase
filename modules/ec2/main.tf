@@ -12,6 +12,7 @@ resource "aws_instance" "instance_a" {
               systemctl start nginx
               systemctl enable nginx
               echo "<h1>Welcome to Homepage</h1>" > /usr/share/nginx/html/index.html
+              systemctl restart nginx
               EOF
 #   user_data = <<-EOF
 #                 #!/bin/bash
@@ -62,6 +63,7 @@ resource "aws_instance" "instance_b" {
               systemctl enable nginx
               mkdir -p /usr/share/nginx/html/images
               echo "<h1>Welcome to Images</h1>" > /usr/share/nginx/html/images/index.html
+              systemctl restart nginx
               EOF
 #   user_data = <<-EOF
 #                 #!/bin/bash
@@ -111,6 +113,7 @@ resource "aws_instance" "instance_c" {
               systemctl enable nginx
               mkdir -p /usr/share/nginx/html/register
               echo "<h1>Welcome to Register</h1>" > /usr/share/nginx/html/register/index.html
+              systemctl restart nginx
               EOF
 
 #   user_data = <<-EOF
