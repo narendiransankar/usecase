@@ -1,0 +1,10 @@
+.terraform/
+*.tfstate
+*.tfstate.*
+*.backup
+*.log
+*.tfvars
+crash.log
+*.zip
+*.tar.gz
+*.lock.hcl
