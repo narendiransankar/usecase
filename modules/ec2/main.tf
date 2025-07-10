@@ -8,40 +8,11 @@ resource "aws_instance" "instance_a" {
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
-              yum install nginx -y
-              systemctl start nginx
-              systemctl enable nginx
-              echo "<h1>Welcome to Homepage</h1>" > /usr/share/nginx/html/index.html
-              systemctl restart nginx
+              yum install -y httpd
+              systemctl start httpd
+              systemctl enable httpd
+              echo "Welcome to Home Page" > /var/www/html/index.html
               EOF
-#   user_data = <<-EOF
-#                 #!/bin/bash
-#                 set -e  # Exit on error
-
-#                 # Update system packages
-#                 yum update -y
-
-#                 # Set the system crypto policy to FUTURE
-#                 update-crypto-policies --set FUTURE
-
-#                 # Lock down SELinux by updating the configuration file
-#                 sed -i 's/^SELINUX=.*/SELINUX=enforcing/' /etc/selinux/config
-
-#                 # Temporarily set SELinux to enforcing mode
-#                 setenforce 1
-
-#                 # Install NGINX
-#                 yum install nginx -y
-
-#                 # Start and enable NGINX
-#                 systemctl start nginx
-#                 systemctl enable nginx
-
-#                 # Create HTML directory and file
-#                 mkdir -p /usr/share/nginx/html/images
-#                 echo "<h1>Welcome to homepage</h1>" > /usr/share/nginx/html/index.html
-#                 EOF
-
   tags = {
     Name = "Instance-A-Homepage"
   }
@@ -57,41 +28,14 @@ resource "aws_instance" "instance_b" {
 
   user_data = <<-EOF
               #!/bin/bash
-              yum update -y
-              yum install nginx -y
-              systemctl start nginx
-              systemctl enable nginx
-              mkdir -p /usr/share/nginx/html/images
-              echo "<h1>Welcome to Images</h1>" > /usr/share/nginx/html/images/index.html
-              systemctl restart nginx
+              apt update -y
+              apt install -y apache2
+              systemctl start apache2
+              systemctl enable apache2
+              mkdir -p /var/www/html/images
+              echo "<h1>Welcome to Images</h1>" > /var/www/html/images/index.html
               EOF
-#   user_data = <<-EOF
-#                 #!/bin/bash
-#                 set -e  # Exit on error
 
-#                 # Update system packages
-#                 yum update -y
-
-#                 # Set the system crypto policy to FUTURE
-#                 update-crypto-policies --set FUTURE
-
-#                 # Lock down SELinux by updating the configuration file
-#                 sed -i 's/^SELINUX=.*/SELINUX=enforcing/' /etc/selinux/config
-
-#                 # Temporarily set SELinux to enforcing mode
-#                 setenforce 1
-
-#                 # Install NGINX
-#                 yum install nginx -y
-
-#                 # Start and enable NGINX
-#                 systemctl start nginx
-#                 systemctl enable nginx
-
-#                 # Create HTML directory and file
-#                 mkdir -p /usr/share/nginx/html/images
-#                 echo "<h1>Welcome to Images</h1>" > /usr/share/nginx/html/images/index.html
-#                 EOF  
   tags = {
     Name = "Instance-B-Images"
   }
@@ -107,42 +51,14 @@ resource "aws_instance" "instance_c" {
 
   user_data = <<-EOF
               #!/bin/bash
-              yum update -y
-              yum install nginx -y
-              systemctl start nginx
-              systemctl enable nginx
-              mkdir -p /usr/share/nginx/html/register
-              echo "<h1>Welcome to Register</h1>" > /usr/share/nginx/html/register/index.html
-              systemctl restart nginx
+              apt update -y
+              apt install -y apache2
+              systemctl start apache2
+              systemctl enable apache2
+              mkdir -p /var/www/html/register
+              echo "<h1>Welcome to Register</h1>" > /var/www/html/register/index.html
               EOF
 
-#   user_data = <<-EOF
-#             #!/bin/bash
-#             set -e  # Exit on error
-
-#             # Update system packages
-#             yum update -y
-
-#             # Set the system crypto policy to FUTURE
-#             update-crypto-policies --set FUTURE
-
-#             # Lock down SELinux by updating the configuration file
-#             sed -i 's/^SELINUX=.*/SELINUX=enforcing/' /etc/selinux/config
-
-#             # Temporarily set SELinux to enforcing mode
-#             setenforce 1
-
-#             # Install NGINX
-#             yum install nginx -y
-
-#             # Start and enable NGINX
-#             systemctl start nginx
-#             systemctl enable nginx
-
-#             # Create HTML directory and file
-#             mkdir -p /usr/share/nginx/html/images
-#             echo "<h1>Welcome to register</h1>" > /usr/share/nginx/html/register/index.html
-#             EOF
   tags = {
     Name = "Instance-C-Register"
   }
