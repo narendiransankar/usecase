@@ -5,14 +5,7 @@ resource "aws_instance" "instance_a" {
   associate_public_ip_address = true 
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   user_data = file("${path.module}/userdata0.sh")
-  user_data = <<-EOF
-              #!/bin/bash
-              yum update -y
-              yum install -y httpd
-              systemctl start httpd
-              systemctl enable httpd
-              echo "Welcome to Home Page" > /var/www/html/index.html
-              EOF
+
   tags = {
     Name = "Instance-A-Homepage"
   }
