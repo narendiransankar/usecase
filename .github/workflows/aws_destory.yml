@@ -7,6 +7,9 @@ jobs:
    runs-on: ubuntu-latest
 
    steps:
+     - name: checkout repositry 
+       uses: actions/checkout@v3
+       
      - name: Set up Terraform
        uses: hashicorp/setup-terraform@v3
        
@@ -17,6 +20,9 @@ jobs:
          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
          aws-region: ap-south-1
          
+     - name: Terraform Init
+       run: terraform init  
+        
      - name: Terraform destroy
        id: destroy
        run: terraform destroy -auto-approve
