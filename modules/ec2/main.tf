@@ -4,7 +4,7 @@ resource "aws_instance" "instance_a" {
   subnet_id              = var.subnet_ids[0]
   associate_public_ip_address = true 
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-
+  user_data = file("${path.module}/userdata0.sh")
   user_data = <<-EOF
               #!/bin/bash
               yum update -y
@@ -25,7 +25,7 @@ resource "aws_instance" "instance_b" {
   subnet_id              = var.subnet_ids[1]
   associate_public_ip_address = true 
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-
+  user_data = file("${path.module}/userdata1.sh")
   user_data = <<-EOF
               #!/bin/bash
               apt update -y
@@ -48,7 +48,7 @@ resource "aws_instance" "instance_c" {
   subnet_id              = var.subnet_ids[2]
   associate_public_ip_address = true 
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
-
+  user_data = file("${path.module}/userdata2.sh")
   user_data = <<-EOF
               #!/bin/bash
               apt update -y
