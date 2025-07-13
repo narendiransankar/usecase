@@ -32,16 +32,6 @@ resource "aws_instance" "instance_c" {
   associate_public_ip_address = true 
   vpc_security_group_ids = [aws_security_group.ec2_sg.id]
   user_data = file("${path.module}/userdata2.sh")
-  user_data = <<-EOF
-              #!/bin/bash
-              apt update -y
-              apt install -y apache2
-              systemctl start apache2
-              systemctl enable apache2
-              mkdir -p /var/www/html/register
-              echo "<h1>Welcome to Register</h1>" > /var/www/html/register/index.html
-              EOF
-
   tags = {
     Name = "Instance-C-Register"
   }
