@@ -16,6 +16,15 @@ resource "aws_lb_target_group" "tg_homepage" {
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = var.vpc_id
+  health_check {
+    path                = "/"
+    protocol            = "HTTP"
+    matcher             = "200"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+   }
 }
 
 resource "aws_lb_target_group_attachment" "tg_homepage_attachment" {
@@ -31,6 +40,15 @@ resource "aws_lb_target_group" "tg_images" {
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = var.vpc_id
+  health_check {
+    path                = "/"
+    protocol            = "HTTP"
+    matcher             = "200"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+   }
 }
 
 
@@ -50,6 +68,15 @@ resource "aws_lb_target_group" "tg_register" {
   protocol    = "HTTP"
   target_type = "instance"
   vpc_id      = var.vpc_id
+  health_check {
+    path                = "/"
+    protocol            = "HTTP"
+    matcher             = "200"
+    interval            = 30
+    timeout             = 5
+    healthy_threshold   = 2
+    unhealthy_threshold = 2
+   }
 }
 
 resource "aws_lb_target_group_attachment" "tg_register_attachment" {
@@ -106,18 +133,11 @@ resource "aws_security_group" "alb_sg" {
   vpc_id      = var.vpc_id
 
   ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
-
-#   egress {
-#     from_port   = 80
-#     to_port     = 80
-#     protocol    = "tcp"
-#     security_groups = [var.alb_security_group_id]
-#   }
 
 
   egress {
